@@ -25,6 +25,7 @@ STATIC_DIR = BASE_DIR / "static"
 SATELLITES_PATH = BASE_DIR / "data" / "satellites.json"
 GITHUB_PAGES_URL = "https://klovoksilo-svg.github.io/fergani/"
 CURRENT_API_PATH = BASE_DIR / "data" / "current_api.json"
+PUBLIC_MODE_MARKER_PATH = BASE_DIR / ".fergani-public"
 
 app = FastAPI()
 
@@ -297,7 +298,11 @@ def best_pass(
 
 
 if __name__ == "__main__":
-    public_mode = "--public" in sys.argv or os.getenv("FERGANI_PUBLIC", "false").lower() == "true"
+    public_mode = (
+        "--public" in sys.argv
+        or os.getenv("FERGANI_PUBLIC", "false").lower() == "true"
+        or PUBLIC_MODE_MARKER_PATH.exists()
+    )
     host = os.getenv("FERGANI_HOST", "127.0.0.1")
     port = int(os.getenv("FERGANI_PORT", "8000"))
     reload_enabled = os.getenv("FERGANI_RELOAD", "true").lower() == "true"

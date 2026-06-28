@@ -5,4 +5,5 @@ __pycache__/
 output/
 data/tle_cache.json
 .env
+.fergani-public
 *.log

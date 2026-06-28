@@ -71,6 +71,8 @@ https://klovoksilo-svg.github.io/fergani/
 
 `start_public.bat` her calistiginda yeni Cloudflare adresini `data/current_api.json` dosyasina yazar ve GitHub'a gonderir. Bu nedenle QR sabit kalabilir; yalniz GitHub Pages'in yeni adresi yayinlamasi icin kisa bir sure beklemek gerekebilir.
 
+PyCharm'da `api_server.py` dosyasini normal calistirirken de otomatik public mod acilsin istersen proje klasorunde `.fergani-public` adli bos bir dosya olusturun. Bu dosya GitHub'a gonderilmez; sadece bu bilgisayarda public modu varsayilan yapar.
+
 ## GitHub Pages + QR ile canli kullanim
 
 GitHub Pages sadece arayuzu barindirir. Canli uydu verisi bu bilgisayardaki FastAPI servisinden gelir. Bu nedenle QR linki her zaman GitHub Pages adresini acabilir, fakat canli takip sadece bilgisayar acik, internet bagli ve API/tunel calisirken kullanilabilir.
