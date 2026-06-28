@@ -1558,23 +1558,23 @@
     let observerMarker = null;
 
     const fallbackSatellites = [
-        { name: "TURKSAT 6A", display_name: "TÜRKSAT 6A", type: "GEO", tle_available: true },
-        { name: "GOKTURK-1A", display_name: "GÖKTÜRK-1A", type: "LEO", tle_available: true },
-        { name: "GOKTURK-2", display_name: "GÖKTÜRK-2", type: "LEO", tle_available: true },
-        { name: "IMECE", display_name: "İMECE", type: "LEO", tle_available: true },
-        { name: "FGN-100-D2", display_name: "FGN-100-D2", type: "LEO", tle_available: true },
-        { name: "ISS TEST", display_name: "ISS TEST", type: "LEO", tle_available: true },
-        { name: "TURKSAT 4A", display_name: "TÜRKSAT 4A", type: "GEO", tle_available: true },
-        { name: "FGN-100-D3", display_name: "FGN-100-D3", type: "LEO", tle_available: true },
-        { name: "LUNA-2", display_name: "LUNA-2", type: "LEO", tle_available: true }
+        { name: "TURKSAT 6A", display_name: "TÜRKSAT 6A", type: "GEO", country: "Türkiye", mission: "Haberleşme uydusu", norad_id: 60233, tle_available: true },
+        { name: "GOKTURK-1A", display_name: "GÖKTÜRK-1A", type: "LEO", country: "Türkiye", mission: "Yer gözlem uydusu", norad_id: 41875, tle_available: true },
+        { name: "GOKTURK-2", display_name: "GÖKTÜRK-2", type: "LEO", country: "Türkiye", mission: "Yer gözlem uydusu", norad_id: 39030, tle_available: true },
+        { name: "IMECE", display_name: "İMECE", type: "LEO", country: "Türkiye", mission: "Yüksek çözünürlüklü yer gözlem uydusu", norad_id: 56178, tle_available: true },
+        { name: "FGN-100-D2", display_name: "FGN-100-D2", type: "LEO", country: "Türkiye", mission: "Fergani konumlandırma teknolojileri mikro uydusu", norad_id: 66299, tle_available: true },
+        { name: "ISS TEST", display_name: "ISS TEST", type: "LEO", country: "TEST", mission: "Test uydusu", norad_id: 25544, tle_available: true },
+        { name: "TURKSAT 4A", display_name: "TÜRKSAT 4A", type: "GEO", country: "Türkiye", mission: "Haberleşme uydusu", norad_id: 39522, tle_available: true },
+        { name: "FGN-100-D3", display_name: "FGN-100-D3", type: "LEO", country: "Türkiye", mission: "Fergani konumlandırma teknolojileri mikro uydusu", norad_id: 68464, tle_available: true },
+        { name: "LUNA-2", display_name: "LUNA-2", type: "LEO", country: "Türkiye", mission: "Mikro uydu", norad_id: 68470, tle_available: true }
     ];
+
+    let liveApiAvailable = true;
 
     const apiBaseUrl = (() => {
         const params = new URLSearchParams(window.location.search);
         const apiParam = params.get("api");
-        const defaultApiBaseUrl = window.location.hostname.endsWith("github.io")
-            ? "http://127.0.0.1:8000"
-            : "";
+        const defaultApiBaseUrl = "";
 
         if (apiParam) {
             const normalized = apiParam.replace(/\/+$/, "");
@@ -1591,10 +1591,42 @@
 
     function getApiHelpText() {
         if (window.location.hostname.endsWith("github.io")) {
-            return "GitHub sayfası canlı veri için bu bilgisayardaki API'ye veya ?api= ile verilen tünel adresine bağlanmalı.";
+            return "Önizleme modu: uydu seçebilirsin, canlı konum için ?api= ile çalışan API/tünel adresi gerekir.";
         }
 
         return "Canlı API bağlantısı kurulamadı.";
+    }
+
+    function getSelectedFallbackSatellite() {
+        const selectedName = document.getElementById("satelliteSelect").value;
+        return fallbackSatellites.find(item => item.name === selectedName) || fallbackSatellites[0];
+    }
+
+    function showOfflineSelectedSatellite() {
+        const satellite = getSelectedFallbackSatellite();
+
+        if (!satellite) return;
+
+        setText("trackSatellite", satellite.display_name);
+        setText("country", satellite.country || "-");
+        setText("countryFlag", getCountryFlag(satellite.country));
+        setText("mission", satellite.mission || "-");
+        setText("norad", satellite.norad_id || "-");
+        setText("subLat", "-");
+        setText("subLon", "-");
+        setText("satAlt", "-");
+        setText("azimuth", "-");
+        setText("elevation", "-");
+        setText("range", "-");
+        setVisibilityText(getApiHelpText(), null);
+        setText("pan", "-");
+        setText("tilt", "-");
+        setText("serialCommand", "-");
+        setText("mapStatus", "● Önizleme modu");
+        setText("mapAlt", "-");
+        setText("mapLat", "-");
+        setText("mapLon", "-");
+        setText("mapAz", "-");
     }
 
     const satelliteInfo = {
@@ -1765,12 +1797,13 @@
             }
 
             const data = await response.json();
+            liveApiAvailable = true;
             fillSatelliteSelect(data.satellites);
             return true;
         } catch (error) {
+            liveApiAvailable = false;
             fillSatelliteSelect(fallbackSatellites, true);
-            setText("mapStatus", "● Canlı API bağlantısı yok");
-            clearTrackFields(getApiHelpText());
+            showOfflineSelectedSatellite();
             return false;
         }
     }
@@ -1951,8 +1984,8 @@
 
             result = await response.json();
         } catch (error) {
-            clearTrackFields(getApiHelpText());
-            setText("mapStatus", "● Canlı API bağlantısı yok");
+            liveApiAvailable = false;
+            showOfflineSelectedSatellite();
             return;
         }
 
@@ -2239,8 +2272,13 @@
     document.addEventListener("DOMContentLoaded", async () => {
         renderQuizQuestion();
         initMap();
-        await loadSatellites();
-        await loadTrack();
+        const apiReady = await loadSatellites();
+
+        if (apiReady) {
+            await loadTrack();
+        } else {
+            showOfflineSelectedSatellite();
+        }
 
         document.getElementById("satelliteSelect").addEventListener("change", async () => {
             stopAutoTrack();
@@ -2253,9 +2291,13 @@
             }
 
             updateSatelliteInfoCard();
-            setText("mapStatus", "● Uydu değiştirildi, yeni konum hesaplanıyor...");
 
-            await loadTrack();
+            if (liveApiAvailable) {
+                setText("mapStatus", "● Uydu değiştirildi, yeni konum hesaplanıyor...");
+                await loadTrack();
+            } else {
+                showOfflineSelectedSatellite();
+            }
         });
     });
 </script>
