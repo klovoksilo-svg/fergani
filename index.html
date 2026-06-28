@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -1062,109 +1062,109 @@
 
         <div class="hero-content">
             <div class="brand">
-                <div class="brand-logo">ğŸ›°ï¸</div>
+                <div class="brand-logo">🛰️</div>
                 <div>
                     <h1>Fergani Uydu Takip Platformu</h1>
-                    <p>TÃ¼rk uydularÄ± iÃ§in canlÄ± konum, gÃ¶rÃ¼nÃ¼rlÃ¼k ve pan-tilt yÃ¶nlendirme arayÃ¼zÃ¼.</p>
+                    <p>Türk uyduları için canlı konum, görünürlük ve pan-tilt yönlendirme arayüzü.</p>
                 </div>
             </div>
 
             <div class="hero-right">
-                <button class="theme-btn" onclick="toggleTheme()">Tema DeÄŸiÅŸtir</button>
+                <button class="theme-btn" onclick="toggleTheme()">Tema Değiştir</button>
 
                 <div class="flag-box">
                     <div class="flag-shadow"></div>
-                    <img class="turkish-flag" src="static/bayrak.png?v=2" alt="TÃ¼rk bayraÄŸÄ±">
+                    <img class="turkish-flag" src="static/bayrak.png?v=2" alt="Türk bayrağı">
                 </div>
             </div>
         </div>
     </header>
 
     <nav class="tabs">
-        <button class="tab-btn active" data-page="trackingPage" onclick="showPage('trackingPage', this)">ğŸ¯ CanlÄ± Takip</button>
-        <button class="tab-btn" data-page="passPage" onclick="showPage('passPage', this)">ğŸ“… GeÃ§iÅŸ HesabÄ±</button>
-        <button class="tab-btn" data-page="educationPage" onclick="showPage('educationPage', this)">ğŸ“ EÄŸitim Merkezi</button>
+        <button class="tab-btn active" data-page="trackingPage" onclick="showPage('trackingPage', this)">🎯 Canlı Takip</button>
+        <button class="tab-btn" data-page="passPage" onclick="showPage('passPage', this)">📅 Geçiş Hesabı</button>
+        <button class="tab-btn" data-page="educationPage" onclick="showPage('educationPage', this)">🎓 Eğitim Merkezi</button>
     </nav>
 
     <section class="shell">
         <main id="trackingPage" class="page active">
             <section class="control-row">
                 <div>
-                    <label>Uydu SeÃ§imi <span class="hint" data-tip="Takip etmek istediÄŸin uyduyu seÃ§.">?</span></label>
+                    <label>Uydu Seçimi <span class="hint" data-tip="Takip etmek istediğin uyduyu seç.">?</span></label>
                     <select id="satelliteSelect"></select>
                 </div>
 
                 <div>
-                    <label>Enlem (Â°) <span class="hint" data-tip="BulunduÄŸun yerin kuzey-gÃ¼ney konumu.">?</span></label>
+                    <label>Enlem (°) <span class="hint" data-tip="Bulunduğun yerin kuzey-güney konumu.">?</span></label>
                     <input id="observerLat" type="number" step="0.0001" value="39.9334">
                 </div>
 
                 <div>
-                    <label>Boylam (Â°) <span class="hint" data-tip="BulunduÄŸun yerin doÄŸu-batÄ± konumu.">?</span></label>
+                    <label>Boylam (°) <span class="hint" data-tip="Bulunduğun yerin doğu-batı konumu.">?</span></label>
                     <input id="observerLon" type="number" step="0.0001" value="32.8597">
                 </div>
 
                 <div>
-                    <label>YÃ¼kseklik (m) <span class="hint" data-tip="GÃ¶zlem noktasÄ±nÄ±n deniz seviyesinden yÃ¼ksekliÄŸi.">?</span></label>
+                    <label>Yükseklik (m) <span class="hint" data-tip="Gözlem noktasının deniz seviyesinden yüksekliği.">?</span></label>
                     <input id="observerElevation" type="number" step="1" value="900">
                 </div>
 
-                <button class="action-btn btn-track" onclick="loadTrack()">ğŸ¯ AnlÄ±k Takip</button>
-                <button class="action-btn btn-pass" onclick="loadBestPass()">â­ En Ä°yi GeÃ§iÅŸ</button>
-                <button class="action-btn btn-auto" onclick="startAutoTrack()">â–¶ Otomatik Takip BaÅŸlat</button>
-                <button class="action-btn btn-stop" onclick="stopAutoTrack()">â–  Durdur</button>
+                <button class="action-btn btn-track" onclick="loadTrack()">🎯 Anlık Takip</button>
+                <button class="action-btn btn-pass" onclick="loadBestPass()">⭐ En İyi Geçiş</button>
+                <button class="action-btn btn-auto" onclick="startAutoTrack()">▶ Otomatik Takip Başlat</button>
+                <button class="action-btn btn-stop" onclick="stopAutoTrack()">■ Durdur</button>
             </section>
 
             <section class="dashboard">
                 <div class="left-stack">
                     <div class="card">
                         <div class="card-title title-red">
-                            <h2>ğŸ“¡ ANLIK TAKÄ°P</h2>
-                            <span class="hint" data-tip="Uyduya ait canlÄ± konum ve gÃ¶rÃ¼nÃ¼rlÃ¼k bilgileri.">?</span>
+                            <h2>📡 ANLIK TAKİP</h2>
+                            <span class="hint" data-tip="Uyduya ait canlı konum ve görünürlük bilgileri.">?</span>
                         </div>
 
                         <div class="metrics">
                             <div class="metric">
-                                <div class="icon">ğŸ›°ï¸</div>
+                                <div class="icon">🛰️</div>
                                 <div class="name">Uydu</div>
                                 <div class="value" id="trackSatellite">-</div>
                                 <div class="sub" id="mission">-</div>
                             </div>
 
                             <div class="metric">
-                                <div class="icon">ğŸ‡¹ğŸ‡·</div>
-                                <div class="name">Ãœlke</div>
+                                <div class="icon">🇹🇷</div>
+                                <div class="name">Ülke</div>
                                 <div class="value country-value">
-                                    <span class="country-flag" id="countryFlag">ğŸ‡¹ğŸ‡·</span>
+                                    <span class="country-flag" id="countryFlag">🇹🇷</span>
                                     <span id="country">-</span>
                                 </div>
                                 <div class="sub">NORAD: <span id="norad">-</span></div>
                             </div>
 
                             <div class="metric">
-                                <div class="icon">ğŸ§­</div>
+                                <div class="icon">🧭</div>
                                 <div class="name">Azimut</div>
                                 <div class="value" id="azimuth">-</div>
-                                <div class="sub">Pusuladaki yÃ¶n</div>
+                                <div class="sub">Pusuladaki yön</div>
                             </div>
 
                             <div class="metric">
-                                <div class="icon">ğŸ“</div>
+                                <div class="icon">📐</div>
                                 <div class="name">Elevasyon</div>
                                 <div class="value" id="elevation">-</div>
-                                <div class="sub">Ufuktan yÃ¼kseklik</div>
+                                <div class="sub">Ufuktan yükseklik</div>
                             </div>
 
                             <div class="metric">
-                                <div class="icon">ğŸ“</div>
-                                <div class="name">Yer Ä°zdÃ¼ÅŸÃ¼mÃ¼</div>
+                                <div class="icon">📍</div>
+                                <div class="name">Yer İzdüşümü</div>
                                 <div class="value" id="subLat">-</div>
                                 <div class="sub" id="subLon">-</div>
                             </div>
 
                             <div class="metric">
-                                <div class="icon">ğŸ‘ï¸</div>
-                                <div class="name">GÃ¶rÃ¼nÃ¼rlÃ¼k</div>
+                                <div class="icon">👁️</div>
+                                <div class="name">Görünürlük</div>
                                 <div class="value" id="visibility">-</div>
                                 <div class="sub">Mesafe: <span id="range">-</span></div>
                             </div>
@@ -1173,19 +1173,19 @@
 
                     <div class="card hardware">
                         <div class="card-title title-cyan">
-                            <h2>âš™ï¸ DONANIM Ã‡IKIÅI</h2>
-                            <span class="hint" data-tip="Fiziksel pan-tilt mekanizmasÄ± iÃ§in Ã¼retilecek komutlar.">?</span>
+                            <h2>⚙️ DONANIM ÇIKIŞI</h2>
+                            <span class="hint" data-tip="Fiziksel pan-tilt mekanizması için üretilecek komutlar.">?</span>
                         </div>
 
                         <div class="hardware-grid">
                             <div class="hardware-box">
-                                <strong>Pan (Â°)</strong>
+                                <strong>Pan (°)</strong>
                                 <div class="big" id="pan">-</div>
                                 <div class="slider"><i></i></div>
                             </div>
 
                             <div class="hardware-box">
-                                <strong>Tilt (Â°)</strong>
+                                <strong>Tilt (°)</strong>
                                 <div class="big" id="tilt">-</div>
                                 <div class="slider"><i></i></div>
                             </div>
@@ -1199,36 +1199,36 @@
 
                     <div class="card today">
                         <div class="card-title title-green">
-                            <h2>ğŸŒ™ BUGÃœN GÃ–RÃœNÃœR MÃœ?</h2>
-                            <span class="hint" data-tip="SeÃ§ili uydu iÃ§in en uygun gÃ¶rÃ¼nÃ¼r geÃ§iÅŸ Ã¶zeti.">?</span>
+                            <h2>🌙 BUGÜN GÖRÜNÜR MÜ?</h2>
+                            <span class="hint" data-tip="Seçili uydu için en uygun görünür geçiş özeti.">?</span>
                         </div>
 
                         <div class="today-main" id="todaySummary">
-                            En iyi geÃ§iÅŸi hesapla.
+                            En iyi geçişi hesapla.
                         </div>
 
-                        <span class="good-badge">ğŸ‘ GÃ¶zlem Ã–zeti</span>
+                        <span class="good-badge">👍 Gözlem Özeti</span>
                     </div>
                 </div>
 
                 <div class="card map-card">
                     <div class="map-head">
                         <div class="card-title title-cyan" style="margin-bottom:0;">
-                            <h2>ğŸŒ CANLI TAKÄ°P HARÄ°TASI</h2>
-                            <span class="hint" data-tip="Uydu yer izdÃ¼ÅŸÃ¼mÃ¼ ve yÃ¶rÃ¼nge izi burada gÃ¶sterilir.">?</span>
+                            <h2>🌍 CANLI TAKİP HARİTASI</h2>
+                            <span class="hint" data-tip="Uydu yer izdüşümü ve yörünge izi burada gösterilir.">?</span>
                         </div>
 
-                        <span class="status-pill" id="mapStatus">â— Harita hazÄ±r</span>
+                        <span class="status-pill" id="mapStatus">● Harita hazır</span>
                     </div>
 
                     <div id="map"></div>
 
                     <div class="map-info">
-                        <div>â›°ï¸ YÃ¼kseklik: <b id="mapAlt">-</b></div>
-                        <div>ğŸ“ Enlem: <b id="mapLat">-</b></div>
-                        <div>ğŸ“ Boylam: <b id="mapLon">-</b></div>
-                        <div>ğŸ§­ Azimut: <b id="mapAz">-</b></div>
-                        <div>ğŸ‘ï¸ GÃ¶rÃ¼nÃ¼rlÃ¼k: <b id="mapVis">-</b></div>
+                        <div>⛰️ Yükseklik: <b id="mapAlt">-</b></div>
+                        <div>📍 Enlem: <b id="mapLat">-</b></div>
+                        <div>📍 Boylam: <b id="mapLon">-</b></div>
+                        <div>🧭 Azimut: <b id="mapAz">-</b></div>
+                        <div>👁️ Görünürlük: <b id="mapVis">-</b></div>
                     </div>
                 </div>
             </section>
@@ -1236,70 +1236,70 @@
             <section class="bottom-row">
                 <div class="card">
                     <div class="card-title title-cyan">
-                        <h2>ğŸ“Š YÃ–RÃœNGE VE FIRLATMA BÄ°LGÄ°SÄ°</h2>
-                        <span class="hint" data-tip="SeÃ§ili uyduya ait temel yÃ¶rÃ¼nge ve fÄ±rlatma bilgileri.">?</span>
+                        <h2>📊 YÖRÜNGE VE FIRLATMA BİLGİSİ</h2>
+                        <span class="hint" data-tip="Seçili uyduya ait temel yörünge ve fırlatma bilgileri.">?</span>
                     </div>
 
                     <div class="orbit-grid">
                         <div class="orbit-item">
-                            <div class="oicon">ğŸª</div>
-                            <strong>YÃ¶rÃ¼nge Tipi</strong>
+                            <div class="oicon">🪐</div>
+                            <strong>Yörünge Tipi</strong>
                             <span id="infoOrbitType">-</span>
                             <div class="bar"><i></i></div>
                         </div>
 
                         <div class="orbit-item">
-                            <div class="oicon">â›°ï¸</div>
-                            <strong>YÃ¼kseklik</strong>
+                            <div class="oicon">⛰️</div>
+                            <strong>Yükseklik</strong>
                             <span id="satAlt">-</span>
                             <div class="bar"><i style="width:62%;"></i></div>
                         </div>
 
                         <div class="orbit-item">
-                            <div class="oicon">ğŸš€</div>
-                            <strong>FÄ±rlatma Tarihi</strong>
+                            <div class="oicon">🚀</div>
+                            <strong>Fırlatma Tarihi</strong>
                             <span id="infoLaunch">-</span>
                             <div class="bar"><i style="width:74%;"></i></div>
                         </div>
 
                         <div class="orbit-item">
-                            <div class="oicon">ğŸ›«</div>
-                            <strong>FÄ±rlatÄ±cÄ±</strong>
+                            <div class="oicon">🛫</div>
+                            <strong>Fırlatıcı</strong>
                             <span id="infoLaunchVehicle">-</span>
                             <div class="bar"><i style="width:68%;"></i></div>
                         </div>
 
                         <div class="orbit-item">
-                            <div class="oicon">ğŸ“</div>
-                            <strong>FÄ±rlatma Yeri</strong>
+                            <div class="oicon">📍</div>
+                            <strong>Fırlatma Yeri</strong>
                             <span id="infoLaunchSite">-</span>
                             <div class="bar"><i style="width:58%;"></i></div>
                         </div>
 
                         <div class="orbit-item">
-                            <div class="oicon">ğŸ¢</div>
-                            <strong>Ä°ÅŸletici / Sahip</strong>
+                            <div class="oicon">🏢</div>
+                            <strong>İşletici / Sahip</strong>
                             <span id="infoOperator">-</span>
                             <div class="bar"><i style="width:82%;"></i></div>
                         </div>
                     </div>
 
                     <div class="orbit-note" id="orbitExplanation">
-                        Uydu seÃ§ildiÄŸinde aÃ§Ä±klama burada gÃ¶rÃ¼nÃ¼r.
+                        Uydu seçildiğinde açıklama burada görünür.
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-title title-purple">
-                        <h2>ğŸ“ EÄÄ°TÄ°M MERKEZÄ°</h2>
-                        <button class="mini-link" onclick="goToEducation()">TÃ¼mÃ¼nÃ¼ GÃ¶r â€º</button>
+                        <h2>🎓 EĞİTİM MERKEZİ</h2>
+                        <button class="mini-link" onclick="goToEducation()">Tümünü Gör ›</button>
                     </div>
 
                     <div class="education-preview">
-                        <div class="term-mini"><div class="icon">ğŸ§­</div><strong>Azimut</strong><span>Kuzeyden saat yÃ¶nÃ¼nde Ã¶lÃ§Ã¼len yÃ¶n.</span></div>
-                        <div class="term-mini"><div class="icon">ğŸ“</div><strong>Elevasyon</strong><span>Uydunun ufuktan yukarÄ±daki aÃ§Ä±sÄ±.</span></div>
-                        <div class="term-mini"><div class="icon">ğŸ“„</div><strong>TLE</strong><span>Uydu yÃ¶rÃ¼ngesini hesaplama verisi.</span></div>
-                        <div class="term-mini"><div class="icon">ğŸŒ</div><strong>LEO</strong><span>AlÃ§ak DÃ¼nya yÃ¶rÃ¼ngesi.</span></div>
+                        <div class="term-mini"><div class="icon">🧭</div><strong>Azimut</strong><span>Kuzeyden saat yönünde ölçülen yön.</span></div>
+                        <div class="term-mini"><div class="icon">📐</div><strong>Elevasyon</strong><span>Uydunun ufuktan yukarıdaki açısı.</span></div>
+                        <div class="term-mini"><div class="icon">📄</div><strong>TLE</strong><span>Uydu yörüngesini hesaplama verisi.</span></div>
+                        <div class="term-mini"><div class="icon">🌍</div><strong>LEO</strong><span>Alçak Dünya yörüngesi.</span></div>
                     </div>
                 </div>
             </section>
@@ -1308,23 +1308,23 @@
         <main id="passPage" class="page">
             <section class="pass-page-grid">
                 <div class="pass-hero">
-                    <div class="big" id="passBigText">HenÃ¼z geÃ§iÅŸ hesaplanmadÄ±.</div>
-                    <div class="small" id="passSmallText">Uydu seÃ§ip â€œEn Ä°yi GeÃ§iÅŸâ€ butonuna bas.</div>
+                    <div class="big" id="passBigText">Henüz geçiş hesaplanmadı.</div>
+                    <div class="small" id="passSmallText">Uydu seçip “En İyi Geçiş” butonuna bas.</div>
                 </div>
 
                 <div class="card">
                     <div class="card-title title-purple">
-                        <h2>â­ En Ä°yi GeÃ§iÅŸ DetaylarÄ±</h2>
+                        <h2>⭐ En İyi Geçiş Detayları</h2>
                         <span class="status-pill">24 Saat</span>
                     </div>
 
-                    <div class="info-row"><span class="key">BaÅŸlangÄ±Ã§ TR</span><span class="val2" id="passStart">-</span></div>
-                    <div class="info-row"><span class="key">BitiÅŸ TR</span><span class="val2" id="passEnd">-</span></div>
+                    <div class="info-row"><span class="key">Başlangıç TR</span><span class="val2" id="passStart">-</span></div>
+                    <div class="info-row"><span class="key">Bitiş TR</span><span class="val2" id="passEnd">-</span></div>
                     <div class="info-row"><span class="key">Maksimum Elevasyon TR</span><span class="val2" id="passMaxTime">-</span></div>
                     <div class="info-row"><span class="key">Maksimum Elevasyon</span><span class="val2" id="passMaxElevation">-</span></div>
-                    <div class="info-row"><span class="key">BaÅŸlangÄ±Ã§ Azimut</span><span class="val2" id="passStartAzimuth">-</span></div>
-                    <div class="info-row"><span class="key">BitiÅŸ Azimut</span><span class="val2" id="passEndAzimuth">-</span></div>
-                    <div class="info-row"><span class="key">GeÃ§iÅŸ SayÄ±sÄ±</span><span class="val2" id="passCount">-</span></div>
+                    <div class="info-row"><span class="key">Başlangıç Azimut</span><span class="val2" id="passStartAzimuth">-</span></div>
+                    <div class="info-row"><span class="key">Bitiş Azimut</span><span class="val2" id="passEndAzimuth">-</span></div>
+                    <div class="info-row"><span class="key">Geçiş Sayısı</span><span class="val2" id="passCount">-</span></div>
                 </div>
             </section>
         </main>
@@ -1333,36 +1333,36 @@
             <section class="edu-grid">
                 <div class="card">
                     <div class="card-title title-purple">
-                        <h2>ğŸ“ Mini Uzay SÃ¶zlÃ¼ÄŸÃ¼</h2>
-                        <span class="status-pill">Basit AnlatÄ±m</span>
+                        <h2>🎓 Mini Uzay Sözlüğü</h2>
+                        <span class="status-pill">Basit Anlatım</span>
                     </div>
 
                     <div class="dictionary">
-                        <div class="term"><div class="icon">ğŸ“„</div><strong>TLE</strong><span>Uydunun yÃ¶rÃ¼ngesini hesaplamak iÃ§in kullanÄ±lan iki satÄ±rlÄ±k veri formatÄ±dÄ±r.</span></div>
-                        <div class="term"><div class="icon">ğŸ†”</div><strong>NORAD ID</strong><span>UydularÄ±n takip sistemlerinde kullanÄ±lan katalog numarasÄ±dÄ±r.</span></div>
-                        <div class="term"><div class="icon">ğŸ§­</div><strong>Azimut</strong><span>Uydunun pusulada hangi yÃ¶ne denk geldiÄŸini gÃ¶sterir.</span></div>
-                        <div class="term"><div class="icon">ğŸ“</div><strong>Elevasyon</strong><span>Uydunun ufuk Ã§izgisine gÃ¶re kaÃ§ derece yukarÄ±da olduÄŸunu gÃ¶sterir.</span></div>
-                        <div class="term"><div class="icon">ğŸŒ</div><strong>LEO</strong><span>AlÃ§ak DÃ¼nya yÃ¶rÃ¼ngesidir. Bu uydular hÄ±zlÄ± hareket eder.</span></div>
-                        <div class="term"><div class="icon">ğŸ“¡</div><strong>GEO</strong><span>HaberleÅŸme uydularÄ±nda sÄ±k kullanÄ±lan, gÃ¶kyÃ¼zÃ¼nde neredeyse sabit gÃ¶rÃ¼nen yÃ¶rÃ¼ngedir.</span></div>
-                        <div class="term"><div class="icon">ğŸ“</div><strong>Yer Ä°zdÃ¼ÅŸÃ¼mÃ¼</strong><span>Uydunun DÃ¼nya Ã¼zerinde tam altÄ±na denk gelen noktadÄ±r.</span></div>
-                        <div class="term"><div class="icon">ğŸ‘€</div><strong>GÃ¶rÃ¼nÃ¼r GeÃ§iÅŸ</strong><span>Uydunun seÃ§ilen konumdan ufkun Ã¼zerine Ã§Ä±ktÄ±ÄŸÄ± zaman aralÄ±ÄŸÄ±dÄ±r.</span></div>
+                        <div class="term"><div class="icon">📄</div><strong>TLE</strong><span>Uydunun yörüngesini hesaplamak için kullanılan iki satırlık veri formatıdır.</span></div>
+                        <div class="term"><div class="icon">🆔</div><strong>NORAD ID</strong><span>Uyduların takip sistemlerinde kullanılan katalog numarasıdır.</span></div>
+                        <div class="term"><div class="icon">🧭</div><strong>Azimut</strong><span>Uydunun pusulada hangi yöne denk geldiğini gösterir.</span></div>
+                        <div class="term"><div class="icon">📐</div><strong>Elevasyon</strong><span>Uydunun ufuk çizgisine göre kaç derece yukarıda olduğunu gösterir.</span></div>
+                        <div class="term"><div class="icon">🌍</div><strong>LEO</strong><span>Alçak Dünya yörüngesidir. Bu uydular hızlı hareket eder.</span></div>
+                        <div class="term"><div class="icon">📡</div><strong>GEO</strong><span>Haberleşme uydularında sık kullanılan, gökyüzünde neredeyse sabit görünen yörüngedir.</span></div>
+                        <div class="term"><div class="icon">📍</div><strong>Yer İzdüşümü</strong><span>Uydunun Dünya üzerinde tam altına denk gelen noktadır.</span></div>
+                        <div class="term"><div class="icon">👀</div><strong>Görünür Geçiş</strong><span>Uydunun seçilen konumdan ufkun üzerine çıktığı zaman aralığıdır.</span></div>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-title title-green">
-                        <h2>ğŸ… Mini Quiz</h2>
+                        <h2>🏅 Mini Quiz</h2>
                         <span class="status-pill">3 Soru</span>
                     </div>
 
                     <div class="quiz">
-                        <button onclick="quizAnswer(this, true)">1. GEO uydular gÃ¶kyÃ¼zÃ¼nde neredeyse sabit gÃ¶rÃ¼nÃ¼r.</button>
-                        <button onclick="quizAnswer(this, true)">2. Elevasyon, uydunun ufkun Ã¼zerindeki aÃ§Ä±sÄ±dÄ±r.</button>
-                        <button onclick="quizAnswer(this, false)">3. TLE, uydunun fotoÄŸraf dosyasÄ±dÄ±r.</button>
+                        <button onclick="quizAnswer(this, true)">1. GEO uydular gökyüzünde neredeyse sabit görünür.</button>
+                        <button onclick="quizAnswer(this, true)">2. Elevasyon, uydunun ufkun üzerindeki açısıdır.</button>
+                        <button onclick="quizAnswer(this, false)">3. TLE, uydunun fotoğraf dosyasıdır.</button>
                     </div>
 
                     <div class="today-main" style="font-size:20px;margin-top:18px;" id="quizResult">
-                        CevapladÄ±ÄŸÄ±n seÃ§enek burada deÄŸerlendirilecek.
+                        Cevapladığın seçenek burada değerlendirilecek.
                     </div>
                 </div>
             </section>
@@ -1399,57 +1399,57 @@
     const satelliteInfo = {
         "TURKSAT 6A": {
             launch: "9 Temmuz 2024",
-            className: "HaberleÅŸme uydusu",
+            className: "Haberleşme uydusu",
             orbitType: "GEO",
             launchVehicle: "Falcon 9",
             launchSite: "Cape Canaveral SLC-40, ABD",
-            operator: "TÃœRKSAT / TÃ¼rkiye",
-            orbitText: "GEO yÃ¶rÃ¼ngededir. Bu nedenle DÃ¼nya Ã¼zerinden bakÄ±ldÄ±ÄŸÄ±nda neredeyse sabit gÃ¶rÃ¼nÃ¼r. HaberleÅŸme gÃ¶revleri iÃ§in bu bÃ¼yÃ¼k avantaj saÄŸlar."
+            operator: "TÜRKSAT / Türkiye",
+            orbitText: "GEO yörüngededir. Bu nedenle Dünya üzerinden bakıldığında neredeyse sabit görünür. Haberleşme görevleri için bu büyük avantaj sağlar."
         },
         "TURKSAT 4A": {
-            launch: "14 Åubat 2014",
-            className: "HaberleÅŸme uydusu",
+            launch: "14 Şubat 2014",
+            className: "Haberleşme uydusu",
             orbitType: "GEO",
             launchVehicle: "Proton-M / Briz-M",
-            launchSite: "Baikonur Uzay ÃœssÃ¼",
-            operator: "TÃœRKSAT / TÃ¼rkiye",
-            orbitText: "GEO yÃ¶rÃ¼ngededir. HaberleÅŸme uydusu olduÄŸu iÃ§in yerden bakÄ±ldÄ±ÄŸÄ±nda gÃ¶kyÃ¼zÃ¼nde neredeyse sabit bir yÃ¶nde gÃ¶rÃ¼nÃ¼r. GeÃ§iÅŸ hesabÄ±ndan Ã§ok anlÄ±k yÃ¶n hesabÄ± daha anlamlÄ±dÄ±r."
+            launchSite: "Baikonur Uzay Üssü",
+            operator: "TÜRKSAT / Türkiye",
+            orbitText: "GEO yörüngededir. Haberleşme uydusu olduğu için yerden bakıldığında gökyüzünde neredeyse sabit bir yönde görünür. Geçiş hesabından çok anlık yön hesabı daha anlamlıdır."
         },
         "GOKTURK-1A": {
-            launch: "5 AralÄ±k 2016",
-            className: "Yer gÃ¶zlem uydusu",
+            launch: "5 Aralık 2016",
+            className: "Yer gözlem uydusu",
             orbitType: "LEO",
             launchVehicle: "Vega",
-            launchSite: "Kourou, FransÄ±z GuyanasÄ±",
-            operator: "TÃ¼rkiye",
-            orbitText: "LEO yÃ¶rÃ¼ngededir. DÃ¼nya Ã§evresinde hÄ±zlÄ± hareket eder ve farklÄ± bÃ¶lgeler Ã¼zerinden geÃ§er."
+            launchSite: "Kourou, Fransız Guyanası",
+            operator: "Türkiye",
+            orbitText: "LEO yörüngededir. Dünya çevresinde hızlı hareket eder ve farklı bölgeler üzerinden geçer."
         },
         "GOKTURK-2": {
-            launch: "18 AralÄ±k 2012",
-            className: "Yer gÃ¶zlem uydusu",
+            launch: "18 Aralık 2012",
+            className: "Yer gözlem uydusu",
             orbitType: "LEO",
             launchVehicle: "Long March 2D",
-            launchSite: "Jiuquan, Ã‡in",
-            operator: "TÃ¼rkiye",
-            orbitText: "LEO yÃ¶rÃ¼ngededir. Bu yÃ¼zden anlÄ±k konumu ve haritadaki yeri hÄ±zlÄ± deÄŸiÅŸir."
+            launchSite: "Jiuquan, Çin",
+            operator: "Türkiye",
+            orbitText: "LEO yörüngededir. Bu yüzden anlık konumu ve haritadaki yeri hızlı değişir."
         },
         "IMECE": {
             launch: "15 Nisan 2023",
-            className: "YÃ¼ksek Ã§Ã¶zÃ¼nÃ¼rlÃ¼klÃ¼ yer gÃ¶zlem uydusu",
+            className: "Yüksek çözünürlüklü yer gözlem uydusu",
             orbitType: "LEO",
             launchVehicle: "Falcon 9",
             launchSite: "Vandenberg, ABD",
-            operator: "TÃœBÄ°TAK UZAY / TÃ¼rkiye",
-            orbitText: "LEO yÃ¶rÃ¼ngededir. DÃ¼nya etrafÄ±nda hÄ±zlÄ± hareket eder ve farklÄ± bÃ¶lgelerden geÃ§iÅŸ yapar."
+            operator: "TÜBİTAK UZAY / Türkiye",
+            orbitText: "LEO yörüngededir. Dünya etrafında hızlı hareket eder ve farklı bölgelerden geçiş yapar."
         },
         "FGN-100-D2": {
-            launch: "2 KasÄ±m 2025",
+            launch: "2 Kasım 2025",
             className: "Mikro uydu",
             orbitType: "LEO",
             launchVehicle: "-",
             launchSite: "AFETR",
             operator: "Fergani",
-            orbitText: "LEO yÃ¶rÃ¼ngededir. YaklaÅŸÄ±k 95 dakikalÄ±k yÃ¶rÃ¼nge periyodu nedeniyle haritada belirgin ÅŸekilde hareket eder."
+            orbitText: "LEO yörüngededir. Yaklaşık 95 dakikalık yörünge periyodu nedeniyle haritada belirgin şekilde hareket eder."
         },
         "FGN-100-D3": {
             launch: "30 Mart 2026",
@@ -1457,8 +1457,8 @@
             orbitType: "LEO",
             launchVehicle: "-",
             launchSite: "AIR FORCE WESTERN TEST RANGE (AFWTR)",
-            operator: "Fergani / TÃ¼rkiye",
-            orbitText: "LEO yÃ¶rÃ¼ngededir. YaklaÅŸÄ±k 95 dakikalÄ±k periyodu nedeniyle haritada hÄ±zlÄ± hareket eder. Takip iÃ§in gÃ¼ncel TLE verisi gerekir."
+            operator: "Fergani / Türkiye",
+            orbitText: "LEO yörüngededir. Yaklaşık 95 dakikalık periyodu nedeniyle haritada hızlı hareket eder. Takip için güncel TLE verisi gerekir."
         },
         "LUNA-2": {
             launch: "30 Mart 2026",
@@ -1466,8 +1466,8 @@
             orbitType: "LEO",
             launchVehicle: "-",
             launchSite: "AIR FORCE WESTERN TEST RANGE (AFWTR)",
-            operator: "TÃ¼rkiye",
-            orbitText: "LEO yÃ¶rÃ¼ngededir. YaklaÅŸÄ±k 95 dakikalÄ±k periyodu nedeniyle seÃ§ilen konum Ã¼zerinden kÄ±sa sÃ¼reli gÃ¶rÃ¼nÃ¼r geÃ§iÅŸler yapar. Takip iÃ§in gÃ¼ncel TLE verisi gerekir."
+            operator: "Türkiye",
+            orbitText: "LEO yörüngededir. Yaklaşık 95 dakikalık periyodu nedeniyle seçilen konum üzerinden kısa süreli görünür geçişler yapar. Takip için güncel TLE verisi gerekir."
         },
         "ISS TEST": {
             launch: "Test",
@@ -1476,7 +1476,7 @@
             launchVehicle: "-",
             launchSite: "-",
             operator: "Test",
-            orbitText: "Bu, yazÄ±lÄ±m motorunu doÄŸrulamak iÃ§in kullanÄ±lan test hedefidir."
+            orbitText: "Bu, yazılım motorunu doğrulamak için kullanılan test hedefidir."
         }
     };
 
@@ -1572,29 +1572,29 @@
     }
 
     function getCountryFlag(country) {
-        if (!country) return "ğŸŒ";
+        if (!country) return "🌍";
         const lower = country.toLowerCase();
 
-        if (lower.includes("tÃ¼rkiye") || lower.includes("turkiye")) return "ğŸ‡¹ğŸ‡·";
-        if (lower.includes("test")) return "ğŸ§ª";
-        return "ğŸŒ";
+        if (lower.includes("türkiye") || lower.includes("turkiye")) return "🇹🇷";
+        if (lower.includes("test")) return "🧪";
+        return "🌍";
     }
 
     function normalizeSatelliteName(name) {
         return (name || "")
-            .replaceAll("Ä°", "I")
-            .replaceAll("IÌ‡", "I")
-            .replaceAll("Ä±", "i")
-            .replaceAll("Å", "S")
-            .replaceAll("ÅŸ", "s")
-            .replaceAll("Ä", "G")
-            .replaceAll("ÄŸ", "g")
-            .replaceAll("Ãœ", "U")
-            .replaceAll("Ã¼", "u")
-            .replaceAll("Ã–", "O")
-            .replaceAll("Ã¶", "o")
-            .replaceAll("Ã‡", "C")
-            .replaceAll("Ã§", "c")
+            .replaceAll("İ", "I")
+            .replaceAll("İ", "I")
+            .replaceAll("ı", "i")
+            .replaceAll("Ş", "S")
+            .replaceAll("ş", "s")
+            .replaceAll("Ğ", "G")
+            .replaceAll("ğ", "g")
+            .replaceAll("Ü", "U")
+            .replaceAll("ü", "u")
+            .replaceAll("Ö", "O")
+            .replaceAll("ö", "o")
+            .replaceAll("Ç", "C")
+            .replaceAll("ç", "c")
             .trim();
     }
 
@@ -1610,7 +1610,7 @@
             setText("infoLaunchSite", "-");
             setText("infoOperator", "-");
             setText("infoClass", "-");
-            setText("orbitExplanation", "Bu uydu iÃ§in aÃ§Ä±klama bilgisi yok.");
+            setText("orbitExplanation", "Bu uydu için açıklama bilgisi yok.");
             return;
         }
 
@@ -1637,7 +1637,7 @@
     function clearTrackFields(errorText) {
         setText("trackSatellite", "-");
         setText("country", "-");
-        setText("countryFlag", "ğŸŒ");
+        setText("countryFlag", "🌍");
         setText("mission", "-");
         setText("norad", "-");
         setText("subLat", "-");
@@ -1649,7 +1649,7 @@
         setText("pan", "-");
         setText("tilt", "-");
         setText("serialCommand", "-");
-        setText("mapStatus", "â— Harita gÃ¼ncellenemedi");
+        setText("mapStatus", "● Harita güncellenemedi");
         setText("mapAlt", "-");
         setText("mapLat", "-");
         setText("mapLon", "-");
@@ -1674,7 +1674,7 @@
             observerMarker.setLatLng([lat, lon]);
         }
 
-        observerMarker.bindPopup(`<b>GÃ¶zlem Konumu</b><br>Enlem: ${lat}<br>Boylam: ${lon}`);
+        observerMarker.bindPopup(`<b>Gözlem Konumu</b><br>Enlem: ${lat}<br>Boylam: ${lon}`);
     }
 
     function updateMap(state) {
@@ -1694,9 +1694,9 @@
             NORAD: ${state.norad_id}<br>
             Enlem: ${lat.toFixed(4)}<br>
             Boylam: ${lon.toFixed(4)}<br>
-            YÃ¼kseklik: ${state.subsatellite_elevation_km.toFixed(2)} km<br>
-            Azimut: ${state.azimuth_deg.toFixed(2)}Â°<br>
-            Elevasyon: ${state.elevation_deg.toFixed(2)}Â°
+            Yükseklik: ${state.subsatellite_elevation_km.toFixed(2)} km<br>
+            Azimut: ${state.azimuth_deg.toFixed(2)}°<br>
+            Elevasyon: ${state.elevation_deg.toFixed(2)}°
         `);
 
         const points = orbitTrail.getLatLngs();
@@ -1712,11 +1712,11 @@
             duration: 0.35
         });
 
-        setText("mapStatus", `â— ${state.display_name}: ${lat.toFixed(2)}, ${lon.toFixed(2)}`);
+        setText("mapStatus", `● ${state.display_name}: ${lat.toFixed(2)}, ${lon.toFixed(2)}`);
         setText("mapAlt", state.subsatellite_elevation_km.toFixed(2) + " km");
         setText("mapLat", lat.toFixed(2));
         setText("mapLon", lon.toFixed(2));
-        setText("mapAz", state.azimuth_deg.toFixed(1) + "Â°");
+        setText("mapAz", state.azimuth_deg.toFixed(1) + "°");
     }
 
     async function loadTrack() {
@@ -1743,15 +1743,15 @@
         setText("subLat", state.subsatellite_lat_deg.toFixed(4));
         setText("subLon", state.subsatellite_lon_deg.toFixed(4));
         setText("satAlt", state.subsatellite_elevation_km.toFixed(0) + " km");
-        setText("azimuth", state.azimuth_deg.toFixed(1) + "Â°");
-        setText("elevation", state.elevation_deg.toFixed(1) + "Â°");
+        setText("azimuth", state.azimuth_deg.toFixed(1) + "°");
+        setText("elevation", state.elevation_deg.toFixed(1) + "°");
         setText("range", state.range_km.toFixed(1) + " km");
 
-        if (state.visible_from_observer) setVisibilityText("GÃ¶rÃ¼nÃ¼yor", true);
-        else setVisibilityText("GÃ¶rÃ¼nmÃ¼yor", false);
+        if (state.visible_from_observer) setVisibilityText("Görünüyor", true);
+        else setVisibilityText("Görünmüyor", false);
 
-        setText("pan", servo.pan_deg + "Â°");
-        setText("tilt", servo.tilt_deg + "Â°");
+        setText("pan", servo.pan_deg + "°");
+        setText("tilt", servo.tilt_deg + "°");
         setText("serialCommand", data.serial_command.replace(",", "\n"));
 
         if (info) {
@@ -1774,9 +1774,9 @@
         const data = await response.json();
 
         if (!data.visible_pass_found) {
-            setText("passBigText", "BugÃ¼n uygun geÃ§iÅŸ bulunamadÄ±.");
-            setText("passSmallText", data.message || "BaÅŸka uydu veya konum seÃ§.");
-            setText("todaySummary", "BugÃ¼n uygun geÃ§iÅŸ bulunamadÄ±.");
+            setText("passBigText", "Bugün uygun geçiş bulunamadı.");
+            setText("passSmallText", data.message || "Başka uydu veya konum seç.");
+            setText("todaySummary", "Bugün uygun geçiş bulunamadı.");
             setText("passStart", "-");
             setText("passEnd", "-");
             setText("passMaxTime", "-");
@@ -1790,16 +1790,16 @@
         const startTime = data.start_tr.split(" ")[1].slice(0, 5);
         const endTime = data.end_tr.split(" ")[1].slice(0, 5);
 
-        setText("passBigText", `${startTime} - ${endTime} arasÄ± gÃ¶rÃ¼nÃ¼r`);
-        setText("passSmallText", `Maksimum elevasyon: ${data.max_elevation_deg}Â° â€¢ YaklaÅŸÄ±k ${data.duration_minutes} dakika`);
-        document.getElementById("todaySummary").innerHTML = `Bu akÅŸam <span class="time">${startTime}</span>'de gÃ¶rÃ¼nÃ¼r â€¢ <span class="duration">${data.duration_minutes} dk</span>`;
+        setText("passBigText", `${startTime} - ${endTime} arası görünür`);
+        setText("passSmallText", `Maksimum elevasyon: ${data.max_elevation_deg}° • Yaklaşık ${data.duration_minutes} dakika`);
+        document.getElementById("todaySummary").innerHTML = `Bu akşam <span class="time">${startTime}</span>'de görünür • <span class="duration">${data.duration_minutes} dk</span>`;
 
         setText("passStart", data.start_tr);
         setText("passEnd", data.end_tr);
         setText("passMaxTime", data.max_elevation_tr);
-        setText("passMaxElevation", data.max_elevation_deg + "Â°");
-        setText("passStartAzimuth", data.start_azimuth_deg + "Â°");
-        setText("passEndAzimuth", data.end_azimuth_deg + "Â°");
+        setText("passMaxElevation", data.max_elevation_deg + "°");
+        setText("passStartAzimuth", data.start_azimuth_deg + "°");
+        setText("passEndAzimuth", data.end_azimuth_deg + "°");
         setText("passCount", data.pass_count);
     }
 
@@ -1808,24 +1808,24 @@
         orbitTrail.setLatLngs([]);
         loadTrack();
         autoTrackTimer = setInterval(loadTrack, 1000);
-        setText("mapStatus", "â— CanlÄ± takip aktif");
+        setText("mapStatus", "● Canlı takip aktif");
     }
 
     function stopAutoTrack() {
         if (autoTrackTimer !== null) {
             clearInterval(autoTrackTimer);
             autoTrackTimer = null;
-            setText("mapStatus", "â— Otomatik takip durduruldu");
+            setText("mapStatus", "● Otomatik takip durduruldu");
         }
     }
 
     function quizAnswer(button, correct) {
         if (correct) {
             button.style.background = "rgba(34, 197, 94, .25)";
-            setText("quizResult", "DoÄŸru. Bu kavramÄ± anladÄ±n.");
+            setText("quizResult", "Doğru. Bu kavramı anladın.");
         } else {
             button.style.background = "rgba(239, 68, 68, .25)";
-            setText("quizResult", "YanlÄ±ÅŸ. TLE bir fotoÄŸraf deÄŸil, yÃ¶rÃ¼nge verisidir.");
+            setText("quizResult", "Yanlış. TLE bir fotoğraf değil, yörünge verisidir.");
         }
     }
 
@@ -1845,7 +1845,7 @@
             }
 
             updateSatelliteInfoCard();
-            setText("mapStatus", "â— Uydu deÄŸiÅŸtirildi, yeni konum hesaplanÄ±yor...");
+            setText("mapStatus", "● Uydu değiştirildi, yeni konum hesaplanıyor...");
 
             await loadTrack();
         });
