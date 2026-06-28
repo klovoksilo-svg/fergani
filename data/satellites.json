@@ -1,0 +1,75 @@
+[
+  {
+    "name": "TURKSAT 6A",
+    "display_name": "TÜRKSAT 6A",
+    "type": "GEO",
+    "country": "Türkiye",
+    "mission": "Haberleşme uydusu",
+    "norad_id": 60233
+  },
+  {
+    "name": "GOKTURK-1A",
+    "display_name": "GÖKTÜRK-1A",
+    "type": "LEO",
+    "country": "Türkiye",
+    "mission": "Yer gözlem uydusu",
+    "norad_id": 41875
+  },
+  {
+    "name": "GOKTURK-2",
+    "display_name": "GÖKTÜRK-2",
+    "type": "LEO",
+    "country": "Türkiye",
+    "mission": "Yer gözlem uydusu",
+    "norad_id": 39030
+  },
+  {
+    "name": "IMECE",
+    "display_name": "İMECE",
+    "type": "LEO",
+    "country": "Türkiye",
+    "mission": "Yüksek çözünürlüklü yer gözlem uydusu",
+    "norad_id": 56178
+  },
+  {
+    "name": "FGN-100-D2",
+    "display_name": "FGN-100-D2",
+    "type": "LEO",
+    "country": "Türkiye",
+    "mission": "Fergani konumlandırma teknolojileri mikro uydusu",
+    "norad_id": 66299
+  },
+  {
+    "name": "ISS TEST",
+    "display_name": "ISS TEST",
+    "type": "LEO",
+    "country": "TEST",
+    "mission": "Test uydusu",
+    "norad_id": 25544
+  },
+  {
+  "name": "TURKSAT 4A",
+  "display_name": "TÜRKSAT 4A",
+  "type": "GEO",
+  "country": "Türkiye",
+  "mission": "Haberleşme uydusu",
+  "norad_id": 39522
+},
+  {
+  "name": "FGN-100-D3",
+  "display_name": "FGN-100-D3",
+  "type": "LEO",
+  "country": "Türkiye",
+  "mission": "Fergani konumlandırma teknolojileri mikro uydusu",
+  "norad_id": 68464
+},
+  {
+  "name": "LUNA-2",
+  "display_name": "LUNA-2",
+  "type": "LEO",
+  "country": "Türkiye",
+  "mission": "Mikro uydu",
+  "norad_id": 68470
+}
+
+]
