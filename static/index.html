@@ -1597,13 +1597,24 @@
         }
 
         try {
-            const response = await fetch("data/current_api.json?v=" + Date.now(), {
-                cache: "no-store"
-            });
+            const configUrls = [
+                "https://raw.githubusercontent.com/klovoksilo-svg/fergani/main/data/current_api.json?v=" + Date.now(),
+                "data/current_api.json?v=" + Date.now()
+            ];
 
-            if (!response.ok) return;
+            let config = null;
 
-            const config = await response.json();
+            for (const configUrl of configUrls) {
+                const response = await fetch(configUrl, { cache: "no-store" });
+
+                if (response.ok) {
+                    config = await response.json();
+                    break;
+                }
+            }
+
+            if (!config) return;
+
             const publishedApiUrl = (config.api_base_url || "").replace(/\/+$/, "");
 
             if (publishedApiUrl.startsWith("https://")) {
