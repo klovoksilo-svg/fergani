@@ -24,9 +24,7 @@ Varsayilan yerel adres:
 Servisi sadece bilincli olarak agdan erisilebilir yapmak icin:
 
 ```powershell
-$env:FERGANI_HOST = "0.0.0.0"
-$env:FERGANI_PORT = "8000"
-.\start_server.bat
+.\share_lan.bat
 ```
 
 Sonra ayni agdaki diger cihazlardan su adres acilir:
@@ -38,6 +36,24 @@ http://BILGISAYAR_IP_ADRESI:8000/ui
 Internet uzerinden erisim icin modem/router tarafinda secilen porta yonlendirme yapilmali veya Cloudflare Tunnel, Tailscale ya da ngrok gibi bir tunel servisi kullanilmalidir.
 
 Guvenlik notu: Portu internete acmadan once sadece ihtiyac duyulan portu acin ve uygulamayi mumkunse bir tunel/VPN arkasindan yayinlayin.
+
+## Istediginde baskalarina kullandirma
+
+Normal kullanimda sadece `start_server.bat` calistirin; bu mod bilgisayarin disina acilmaz.
+
+Ayni Wi-Fi veya yerel agdaki kisilere kullandirmak icin:
+
+```powershell
+.\share_lan.bat
+```
+
+Internet uzerinden gecici link vermek icin Cloudflare Tunnel kuruluysa:
+
+```powershell
+.\share_internet_cloudflare.bat
+```
+
+Bu komut ekranda gecici bir `https://...trycloudflare.com` linki verir. Bu linki paylasabilir veya QR koda cevirebilirsiniz. Bilgisayar kapaninca, internet kesilince veya komut penceresi kapaninca canli takip de durur.
 
 ## GitHub Pages + QR ile canli kullanim
 

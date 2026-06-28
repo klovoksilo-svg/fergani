@@ -30,6 +30,10 @@ cors_origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
+    allow_origin_regex=os.getenv(
+        "FERGANI_CORS_ORIGIN_REGEX",
+        r"https://.*\.(trycloudflare\.com|ngrok-free\.app|ngrok\.io)"
+    ),
     allow_methods=["GET"],
     allow_headers=["*"],
 )
