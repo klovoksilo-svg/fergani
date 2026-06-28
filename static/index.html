@@ -1788,6 +1788,21 @@
         updateSatelliteInfoCard();
     }
 
+    async function loadStaticSatellites() {
+        const response = await fetch("data/satellites.json");
+
+        if (!response.ok) {
+            throw new Error("Static satellites file unavailable");
+        }
+
+        const satellites = await response.json();
+
+        return satellites.map(satellite => ({
+            ...satellite,
+            tle_available: satellite.tle_available ?? true
+        }));
+    }
+
     async function loadSatellites() {
         try {
             const response = await fetch(apiUrl("/satellites"));
@@ -1802,7 +1817,14 @@
             return true;
         } catch (error) {
             liveApiAvailable = false;
-            fillSatelliteSelect(fallbackSatellites, true);
+
+            try {
+                const staticSatellites = await loadStaticSatellites();
+                fillSatelliteSelect(staticSatellites, true);
+            } catch (staticError) {
+                fillSatelliteSelect(fallbackSatellites, true);
+            }
+
             showOfflineSelectedSatellite();
             return false;
         }
