@@ -55,6 +55,14 @@ Internet uzerinden gecici link vermek icin Cloudflare Tunnel kuruluysa:
 
 Bu komut ekranda gecici bir `https://...trycloudflare.com` linki verir. Bu linki paylasabilir veya QR koda cevirebilirsiniz. Bilgisayar kapaninca, internet kesilince veya komut penceresi kapaninca canli takip de durur.
 
+Tek komutla GitHub Pages + canli API paylasim linki uretmek icin:
+
+```powershell
+.\start_public.bat
+```
+
+Bu komut `api_server.py --public` calistirir. API zaten `127.0.0.1:8000` uzerinde aciksa onu kullanir; acik degilse API'yi baslatir. Ekranda `PAYLASILACAK GITHUB LINKI` satiri gorundugunde o adresi QR koda cevirebilirsiniz.
+
 ## GitHub Pages + QR ile canli kullanim
 
 GitHub Pages sadece arayuzu barindirir. Canli uydu verisi bu bilgisayardaki FastAPI servisinden gelir. Bu nedenle QR linki her zaman GitHub Pages adresini acabilir, fakat canli takip sadece bilgisayar acik, internet bagli ve API/tunel calisirken kullanilabilir.
