@@ -1591,7 +1591,7 @@
 
     function getApiHelpText() {
         if (window.location.hostname.endsWith("github.io")) {
-            return "Önizleme modu: uydu seçebilirsin, canlı konum için ?api= ile çalışan API/tünel adresi gerekir.";
+            return "Canlı konum için çalışan API/tünel adresi gerekir.";
         }
 
         return "Canlı API bağlantısı kurulamadı.";
@@ -1618,11 +1618,11 @@
         setText("azimuth", "-");
         setText("elevation", "-");
         setText("range", "-");
-        setVisibilityText(getApiHelpText(), null);
+        setVisibilityText("Canlı API yok", null);
         setText("pan", "-");
         setText("tilt", "-");
         setText("serialCommand", "-");
-        setText("mapStatus", "● Önizleme modu");
+        setText("mapStatus", "● Önizleme modu: " + getApiHelpText());
         setText("mapAlt", "-");
         setText("mapLat", "-");
         setText("mapLon", "-");
@@ -1995,6 +1995,11 @@
     async function loadTrack() {
         updateSatelliteInfoCard();
 
+        if (!apiBaseUrl && !liveApiAvailable) {
+            showOfflineSelectedSatellite();
+            return;
+        }
+
         let result;
 
         try {
@@ -2111,6 +2116,12 @@
     }
 
     function startAutoTrack() {
+        if (!liveApiAvailable) {
+            showOfflineSelectedSatellite();
+            setText("mapStatus", "● Otomatik takip için canlı API gerekli");
+            return;
+        }
+
         stopAutoTrack();
         orbitTrail.setLatLngs([]);
         loadTrack();
