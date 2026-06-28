@@ -1596,33 +1596,28 @@
             return;
         }
 
-        try {
-            const configUrls = [
-                "https://raw.githubusercontent.com/klovoksilo-svg/fergani/main/data/current_api.json?v=" + Date.now(),
-                "data/current_api.json?v=" + Date.now()
-            ];
+        const configUrls = [
+            "data/current_api.json?v=" + Date.now(),
+            "https://raw.githubusercontent.com/klovoksilo-svg/fergani/main/data/current_api.json?v=" + Date.now()
+        ];
 
-            let config = null;
-
-            for (const configUrl of configUrls) {
+        for (const configUrl of configUrls) {
+            try {
                 const response = await fetch(configUrl, { cache: "no-store" });
 
-                if (response.ok) {
-                    config = await response.json();
-                    break;
+                if (!response.ok) continue;
+
+                const config = await response.json();
+                const publishedApiUrl = (config.api_base_url || "").replace(/\/+$/, "");
+
+                if (publishedApiUrl.startsWith("https://")) {
+                    apiBaseUrl = publishedApiUrl;
+                    window.localStorage.setItem("ferganiApiBaseUrl", publishedApiUrl);
+                    return;
                 }
+            } catch (error) {
+                // Bu kaynak okunamazsa listedeki sonraki kaynağı dene.
             }
-
-            if (!config) return;
-
-            const publishedApiUrl = (config.api_base_url || "").replace(/\/+$/, "");
-
-            if (publishedApiUrl.startsWith("https://")) {
-                apiBaseUrl = publishedApiUrl;
-                window.localStorage.setItem("ferganiApiBaseUrl", publishedApiUrl);
-            }
-        } catch (error) {
-            // Statik ayar dosyası okunamazsa sayfa önizleme modunda kalır.
         }
     }
 
