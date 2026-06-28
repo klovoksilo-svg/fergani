@@ -4,6 +4,7 @@ from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -16,6 +17,22 @@ STATIC_DIR = BASE_DIR / "static"
 SATELLITES_PATH = BASE_DIR / "data" / "satellites.json"
 
 app = FastAPI()
+
+cors_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "FERGANI_CORS_ORIGINS",
+        "http://127.0.0.1:8000,http://localhost:8000,https://ceyhu.github.io"
+    ).split(",")
+    if origin.strip()
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=cors_origins,
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
 
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
