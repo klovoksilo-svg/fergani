@@ -1,4 +1,5 @@
 import os
+import json
 import shutil
 import subprocess
 import sys
@@ -23,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
 SATELLITES_PATH = BASE_DIR / "data" / "satellites.json"
 GITHUB_PAGES_URL = "https://klovoksilo-svg.github.io/fergani/"
+CURRENT_API_PATH = BASE_DIR / "data" / "current_api.json"
 
 app = FastAPI()
 
@@ -70,6 +72,67 @@ def find_cloudflared():
     return None
 
 
+def find_git():
+    executable = shutil.which("git")
+
+    if executable:
+        return executable
+
+    candidates = [
+        Path(os.getenv("ProgramFiles", "")) / "Git" / "cmd" / "git.exe",
+        Path(os.getenv("ProgramFiles", "")) / "Git" / "bin" / "git.exe",
+        Path(os.getenv("ProgramFiles(x86)", "")) / "Git" / "cmd" / "git.exe",
+    ]
+
+    for candidate in candidates:
+        if candidate.exists():
+            return str(candidate)
+
+    return None
+
+
+def publish_current_api_url(tunnel_url):
+    CURRENT_API_PATH.write_text(
+        json.dumps(
+            {
+                "api_base_url": tunnel_url,
+                "updated_at_utc": datetime.now(timezone.utc).isoformat()
+            },
+            indent=2,
+            ensure_ascii=False
+        ),
+        encoding="utf-8"
+    )
+
+    git = find_git()
+
+    if not git:
+        print("Git bulunamadi; data/current_api.json GitHub'a otomatik gonderilemedi.", flush=True)
+        return
+
+    try:
+        subprocess.run([git, "-C", str(BASE_DIR), "add", "data/current_api.json"], check=True)
+        diff = subprocess.run(
+            [git, "-C", str(BASE_DIR), "diff", "--cached", "--quiet"],
+            check=False
+        )
+
+        if diff.returncode == 0:
+            print("Aktif API adresi zaten GitHub dosyasiyla ayni.", flush=True)
+            return
+
+        subprocess.run(
+            [git, "-C", str(BASE_DIR), "commit", "-m", "Update current public API URL"],
+            check=True
+        )
+        subprocess.run([git, "-C", str(BASE_DIR), "push"], check=True)
+        print("Aktif API adresi GitHub'a gonderildi.", flush=True)
+        print("Sabit QR adresi:", flush=True)
+        print(GITHUB_PAGES_URL, flush=True)
+    except subprocess.CalledProcessError as error:
+        print(f"Aktif API adresi GitHub'a gonderilemedi: {error}", flush=True)
+
+
 def start_public_tunnel(port):
     cloudflared = find_cloudflared()
 
@@ -99,9 +162,13 @@ def start_public_tunnel(port):
                     tunnel_url = part.strip()
                     encoded_api = urllib.parse.quote(tunnel_url, safe="")
                     public_url = f"{GITHUB_PAGES_URL}?api={encoded_api}"
+                    publish_current_api_url(tunnel_url)
                     print("", flush=True)
                     print("PAYLASILACAK GITHUB LINKI:", flush=True)
                     print(public_url, flush=True)
+                    print("", flush=True)
+                    print("SABIT QR LINKI:", flush=True)
+                    print(GITHUB_PAGES_URL, flush=True)
                     print("", flush=True)
                     print("Bu linkten QR kod uret. Bu pencere kapanirsa canli takip durur.", flush=True)
                     break

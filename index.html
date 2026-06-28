@@ -1571,7 +1571,7 @@
 
     let liveApiAvailable = true;
 
-    const apiBaseUrl = (() => {
+    let apiBaseUrl = (() => {
         const params = new URLSearchParams(window.location.search);
         const apiParam = params.get("api");
         const defaultApiBaseUrl = "";
@@ -1587,6 +1587,32 @@
 
     function apiUrl(path) {
         return apiBaseUrl + path;
+    }
+
+    async function loadPublishedApiBaseUrl() {
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get("api") || !window.location.hostname.endsWith("github.io")) {
+            return;
+        }
+
+        try {
+            const response = await fetch("data/current_api.json?v=" + Date.now(), {
+                cache: "no-store"
+            });
+
+            if (!response.ok) return;
+
+            const config = await response.json();
+            const publishedApiUrl = (config.api_base_url || "").replace(/\/+$/, "");
+
+            if (publishedApiUrl.startsWith("https://")) {
+                apiBaseUrl = publishedApiUrl;
+                window.localStorage.setItem("ferganiApiBaseUrl", publishedApiUrl);
+            }
+        } catch (error) {
+            // Statik ayar dosyası okunamazsa sayfa önizleme modunda kalır.
+        }
     }
 
     function getApiHelpText() {
@@ -2305,6 +2331,7 @@
     document.addEventListener("DOMContentLoaded", async () => {
         renderQuizQuestion();
         initMap();
+        await loadPublishedApiBaseUrl();
         const apiReady = await loadSatellites();
 
         if (apiReady) {

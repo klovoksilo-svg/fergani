@@ -63,6 +63,14 @@ Tek komutla GitHub Pages + canli API paylasim linki uretmek icin:
 
 Bu komut `api_server.py --public` calistirir. API zaten `127.0.0.1:8000` uzerinde aciksa onu kullanir; acik degilse API'yi baslatir. Ekranda `PAYLASILACAK GITHUB LINKI` satiri gorundugunde o adresi QR koda cevirebilirsiniz.
 
+Sabit QR kullanimi:
+
+```text
+https://klovoksilo-svg.github.io/fergani/
+```
+
+`start_public.bat` her calistiginda yeni Cloudflare adresini `data/current_api.json` dosyasina yazar ve GitHub'a gonderir. Bu nedenle QR sabit kalabilir; yalniz GitHub Pages'in yeni adresi yayinlamasi icin kisa bir sure beklemek gerekebilir.
+
 ## GitHub Pages + QR ile canli kullanim
 
 GitHub Pages sadece arayuzu barindirir. Canli uydu verisi bu bilgisayardaki FastAPI servisinden gelir. Bu nedenle QR linki her zaman GitHub Pages adresini acabilir, fakat canli takip sadece bilgisayar acik, internet bagli ve API/tunel calisirken kullanilabilir.
