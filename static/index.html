@@ -954,6 +954,141 @@
             cursor: pointer;
         }
 
+        .edu-stack {
+            display: grid;
+            gap: 16px;
+        }
+
+        .edu-panel {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255,255,255,.70);
+            border: 1px solid rgba(100,116,139,.16);
+        }
+
+        body.dark .edu-panel {
+            background: rgba(15,23,42,.74);
+        }
+
+        .edu-panel h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .edu-panel p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.45;
+            font-weight: 700;
+        }
+
+        .quiz-question {
+            margin: 8px 0 12px;
+            font-size: 18px;
+            font-weight: 900;
+            line-height: 1.35;
+        }
+
+        .choice-list {
+            display: grid;
+            gap: 9px;
+        }
+
+        .choice-btn {
+            min-height: 48px;
+            border-radius: 14px;
+            border: 1px solid rgba(59,130,246,.22);
+            background: rgba(59,130,246,.10);
+            color: var(--text-main);
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .choice-btn.correct {
+            border-color: rgba(34,197,94,.55);
+            background: rgba(34,197,94,.18);
+        }
+
+        .choice-btn.wrong {
+            border-color: rgba(239,68,68,.55);
+            background: rgba(239,68,68,.17);
+        }
+
+        .edu-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .edu-actions button {
+            min-height: 42px;
+            border-radius: 12px;
+            border: 0;
+            padding: 0 14px;
+            color: white;
+            background: linear-gradient(135deg, #2563eb, #0ea5e9);
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .edu-actions button.secondary {
+            background: linear-gradient(135deg, #64748b, #334155);
+        }
+
+        .term-focus {
+            display: grid;
+            gap: 10px;
+        }
+
+        .term-focus .big-icon {
+            font-size: 34px;
+        }
+
+        .mission-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .mission-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: start;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(100,116,139,.16);
+            background: rgba(59,130,246,.08);
+        }
+
+        .mission-item input {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #2563eb;
+        }
+
+        .mission-item span {
+            color: var(--text-muted);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .edu-feedback {
+            margin-top: 12px;
+            min-height: 46px;
+            padding: 12px;
+            border-radius: 14px;
+            color: var(--text-main);
+            background: rgba(14,165,233,.10);
+            border: 1px solid rgba(14,165,233,.20);
+            font-weight: 900;
+            line-height: 1.35;
+        }
+
         .leaflet-popup-content-wrapper {
             border-radius: 14px;
             background: #0f172a;
@@ -1334,7 +1469,7 @@
                 <div class="card">
                     <div class="card-title title-purple">
                         <h2>🎓 Mini Uzay Sözlüğü</h2>
-                        <span class="status-pill">Basit Anlatım</span>
+                        <span class="status-pill">12 Kavram</span>
                     </div>
 
                     <div class="dictionary">
@@ -1346,23 +1481,66 @@
                         <div class="term"><div class="icon">📡</div><strong>GEO</strong><span>Haberleşme uydularında sık kullanılan, gökyüzünde neredeyse sabit görünen yörüngedir.</span></div>
                         <div class="term"><div class="icon">📍</div><strong>Yer İzdüşümü</strong><span>Uydunun Dünya üzerinde tam altına denk gelen noktadır.</span></div>
                         <div class="term"><div class="icon">👀</div><strong>Görünür Geçiş</strong><span>Uydunun seçilen konumdan ufkun üzerine çıktığı zaman aralığıdır.</span></div>
+                        <div class="term"><div class="icon">🛰️</div><strong>Yer İstasyonu</strong><span>Uydudan veri alan veya uyduya komut gönderen yerdeki anten sistemidir.</span></div>
+                        <div class="term"><div class="icon">🧮</div><strong>Aralık / Mesafe</strong><span>Gözlemci ile uydu arasındaki yaklaşık uzaklıktır.</span></div>
+                        <div class="term"><div class="icon">🔁</div><strong>Yörünge Periyodu</strong><span>Uydunun Dünya çevresindeki bir turunu tamamlama süresidir.</span></div>
+                        <div class="term"><div class="icon">⚙️</div><strong>Pan-Tilt</strong><span>Anten veya kamerayı yatay ve dikey eksende uyduya yönlendiren mekanizmadır.</span></div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-title title-green">
-                        <h2>🏅 Mini Quiz</h2>
-                        <span class="status-pill">3 Soru</span>
+                <div class="edu-stack">
+                    <div class="card">
+                        <div class="card-title title-green">
+                            <h2>🏅 Mini Quiz</h2>
+                            <span class="status-pill" id="quizProgress">1 / 8</span>
+                        </div>
+
+                        <div class="edu-panel">
+                            <div class="quiz-question" id="quizQuestion">Soru yükleniyor...</div>
+                            <div class="choice-list" id="quizChoices"></div>
+                            <div class="edu-feedback" id="quizResult">Bir cevap seç.</div>
+                            <div class="edu-actions">
+                                <button onclick="nextQuizQuestion()">Sonraki Soru</button>
+                                <button class="secondary" onclick="resetEducationQuiz()">Sıfırla</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="quiz">
-                        <button onclick="quizAnswer(this, true)">1. GEO uydular gökyüzünde neredeyse sabit görünür.</button>
-                        <button onclick="quizAnswer(this, true)">2. Elevasyon, uydunun ufkun üzerindeki açısıdır.</button>
-                        <button onclick="quizAnswer(this, false)">3. TLE, uydunun fotoğraf dosyasıdır.</button>
+                    <div class="card">
+                        <div class="card-title title-cyan">
+                            <h2>🧠 Kavram Kartı</h2>
+                            <span class="status-pill">Hızlı Tekrar</span>
+                        </div>
+
+                        <div class="edu-panel term-focus">
+                            <div class="big-icon" id="termIcon">📄</div>
+                            <h3 id="termTitle">TLE</h3>
+                            <p id="termText">Uydunun yörüngesini hesaplamak için kullanılan iki satırlık veri formatıdır.</p>
+                            <div class="edu-actions">
+                                <button onclick="nextTermCard()">Yeni Kavram</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="today-main" style="font-size:20px;margin-top:18px;" id="quizResult">
-                        Cevapladığın seçenek burada değerlendirilecek.
+                    <div class="card">
+                        <div class="card-title title-red">
+                            <h2>🧪 Küçük Görev</h2>
+                            <span class="status-pill">Uygulamalı</span>
+                        </div>
+
+                        <div class="edu-panel">
+                            <h3>Bir uyduyu antenle takip etmek için hangi bilgiler gerekir?</h3>
+                            <div class="mission-list">
+                                <label class="mission-item"><input type="checkbox" data-mission="correct"><span>Azimut ve elevasyon açısı</span></label>
+                                <label class="mission-item"><input type="checkbox" data-mission="correct"><span>Gözlemcinin enlem, boylam ve yükseklik bilgisi</span></label>
+                                <label class="mission-item"><input type="checkbox" data-mission="wrong"><span>Uydunun sosyal medya hesabı</span></label>
+                                <label class="mission-item"><input type="checkbox" data-mission="correct"><span>Güncel TLE/yörünge verisi</span></label>
+                            </div>
+                            <div class="edu-feedback" id="missionResult">Doğru bilgileri seçip kontrol et.</div>
+                            <div class="edu-actions">
+                                <button onclick="checkMissionAnswers()">Kontrol Et</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1819,17 +1997,173 @@
         }
     }
 
-    function quizAnswer(button, correct) {
-        if (correct) {
-            button.style.background = "rgba(34, 197, 94, .25)";
-            setText("quizResult", "Doğru. Bu kavramı anladın.");
+    const educationQuestions = [
+        {
+            question: "GEO uydular neden gökyüzünde neredeyse sabit görünür?",
+            choices: [
+                "Dünya ile aynı açısal hızda döndükleri için",
+                "Dünya'ya çok yakın oldukları için",
+                "Sadece gece çalıştıkları için"
+            ],
+            answer: 0,
+            feedback: "Doğru. GEO uydular Dünya'nın dönüşüyle uyumlu hareket ettiği için aynı bölgenin üzerinde kalır."
+        },
+        {
+            question: "Elevasyon açısı neyi anlatır?",
+            choices: [
+                "Uydunun ufuk çizgisinden ne kadar yukarıda olduğunu",
+                "Uydunun katalog numarasını",
+                "Uydunun Dünya üzerindeki gölgesini"
+            ],
+            answer: 0,
+            feedback: "Doğru. Elevasyon 0 derecenin altındaysa uydu ufkun altındadır."
+        },
+        {
+            question: "TLE verisi ne için kullanılır?",
+            choices: [
+                "Uydu fotoğrafını saklamak için",
+                "Uydu yörüngesini hesaplamak için",
+                "Anten rengini belirlemek için"
+            ],
+            answer: 1,
+            feedback: "Doğru. TLE, konum tahmini ve geçiş hesabı için temel yörünge verisidir."
+        },
+        {
+            question: "Azimut 90 derece civarındaysa uydu hangi yöne yakındır?",
+            choices: [
+                "Doğu",
+                "Batı",
+                "Güney"
+            ],
+            answer: 0,
+            feedback: "Doğru. Azimut kuzeyden saat yönünde ölçülür; 90 derece doğudur."
+        },
+        {
+            question: "Yer izdüşümü ne demektir?",
+            choices: [
+                "Uydunun Dünya üzerinde tam altına denk gelen nokta",
+                "Anten motorunun dönüş hızı",
+                "Uydunun pil seviyesi"
+            ],
+            answer: 0,
+            feedback: "Doğru. Haritadaki uydu izi bu noktanın zamanla değişimini gösterir."
+        },
+        {
+            question: "LEO uydular için hangisi genellikle doğrudur?",
+            choices: [
+                "Gökyüzünde daha hızlı hareket ederler",
+                "Her zaman sabit görünürler",
+                "TLE verisine ihtiyaç duymazlar"
+            ],
+            answer: 0,
+            feedback: "Doğru. LEO uydular alçak yörüngede oldukları için gözlemciye göre hızlı geçer."
+        },
+        {
+            question: "Pan-tilt sisteminde pan hareketi neyi kontrol eder?",
+            choices: [
+                "Yatay yönlendirmeyi",
+                "Uydu katalog numarasını",
+                "TLE dosyasının tarihini"
+            ],
+            answer: 0,
+            feedback: "Doğru. Pan yatay ekseni, tilt ise yukarı-aşağı eğimi kontrol eder."
+        },
+        {
+            question: "Görünür geçiş hesabında gözlemci konumu neden önemlidir?",
+            choices: [
+                "Aynı uydu farklı şehirlerden farklı açılarla görülür",
+                "Uydu adını değiştirdiği için",
+                "Harita rengini belirlediği için"
+            ],
+            answer: 0,
+            feedback: "Doğru. Enlem, boylam ve yükseklik görünürlük hesabını doğrudan etkiler."
+        }
+    ];
+
+    const termCards = [
+        { icon: "📄", title: "TLE", text: "Uydunun yörüngesini hesaplamak için kullanılan iki satırlık veri formatıdır." },
+        { icon: "🧭", title: "Azimut", text: "Kuzeyden saat yönünde ölçülen yatay yön açısıdır." },
+        { icon: "📐", title: "Elevasyon", text: "Uydunun ufkun üzerinde kaç derece yükseldiğini gösterir." },
+        { icon: "🌍", title: "LEO", text: "Dünya'ya yakın yörüngedir; geçişler kısa ve hızlıdır." },
+        { icon: "📡", title: "GEO", text: "Dünya ile uyumlu dönerek gökyüzünde neredeyse sabit görünen yörüngedir." },
+        { icon: "⚙️", title: "Pan-Tilt", text: "Anten veya kamerayı uyduya doğru çevirmek için iki eksenli yönlendirme sistemidir." }
+    ];
+
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+    let currentTermIndex = 0;
+
+    function renderQuizQuestion() {
+        const item = educationQuestions[currentQuizIndex];
+        setText("quizProgress", `${currentQuizIndex + 1} / ${educationQuestions.length}`);
+        setText("quizQuestion", item.question);
+        setText("quizResult", `Puan: ${quizScore}. Bir cevap seç.`);
+
+        const choices = document.getElementById("quizChoices");
+        choices.innerHTML = "";
+
+        item.choices.forEach((choice, index) => {
+            const button = document.createElement("button");
+            button.className = "choice-btn";
+            button.textContent = choice;
+            button.onclick = () => selectQuizChoice(button, index);
+            choices.appendChild(button);
+        });
+    }
+
+    function selectQuizChoice(button, selectedIndex) {
+        const item = educationQuestions[currentQuizIndex];
+        const buttons = document.querySelectorAll("#quizChoices .choice-btn");
+
+        buttons.forEach((choiceButton, index) => {
+            choiceButton.disabled = true;
+            if (index === item.answer) choiceButton.classList.add("correct");
+        });
+
+        if (selectedIndex === item.answer) {
+            quizScore += 1;
+            setText("quizResult", `${item.feedback} Puan: ${quizScore}.`);
         } else {
-            button.style.background = "rgba(239, 68, 68, .25)";
-            setText("quizResult", "Yanlış. TLE bir fotoğraf değil, yörünge verisidir.");
+            button.classList.add("wrong");
+            setText("quizResult", `Tekrar düşün. ${item.feedback} Puan: ${quizScore}.`);
+        }
+    }
+
+    function nextQuizQuestion() {
+        currentQuizIndex = (currentQuizIndex + 1) % educationQuestions.length;
+        renderQuizQuestion();
+    }
+
+    function resetEducationQuiz() {
+        currentQuizIndex = 0;
+        quizScore = 0;
+        renderQuizQuestion();
+    }
+
+    function nextTermCard() {
+        currentTermIndex = (currentTermIndex + 1) % termCards.length;
+        const term = termCards[currentTermIndex];
+        setText("termIcon", term.icon);
+        setText("termTitle", term.title);
+        setText("termText", term.text);
+    }
+
+    function checkMissionAnswers() {
+        const answers = Array.from(document.querySelectorAll("[data-mission]"));
+        const correct = answers.every(input => {
+            const shouldBeChecked = input.dataset.mission === "correct";
+            return input.checked === shouldBeChecked;
+        });
+
+        if (correct) {
+            setText("missionResult", "Tam isabet. Bir uyduyu takip etmek için yörünge verisi, gözlemci konumu ve yön açıları gerekir.");
+        } else {
+            setText("missionResult", "Bir şey eksik veya fazla. İpucu: sosyal medya hesabı takip hesabına girmez.");
         }
     }
 
     document.addEventListener("DOMContentLoaded", async () => {
+        renderQuizQuestion();
         initMap();
         await loadSatellites();
         await loadTrack();
