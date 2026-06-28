@@ -1557,9 +1557,24 @@
     let orbitTrail = null;
     let observerMarker = null;
 
+    const fallbackSatellites = [
+        { name: "TURKSAT 6A", display_name: "TÜRKSAT 6A", type: "GEO", tle_available: true },
+        { name: "GOKTURK-1A", display_name: "GÖKTÜRK-1A", type: "LEO", tle_available: true },
+        { name: "GOKTURK-2", display_name: "GÖKTÜRK-2", type: "LEO", tle_available: true },
+        { name: "IMECE", display_name: "İMECE", type: "LEO", tle_available: true },
+        { name: "FGN-100-D2", display_name: "FGN-100-D2", type: "LEO", tle_available: true },
+        { name: "ISS TEST", display_name: "ISS TEST", type: "LEO", tle_available: true },
+        { name: "TURKSAT 4A", display_name: "TÜRKSAT 4A", type: "GEO", tle_available: true },
+        { name: "FGN-100-D3", display_name: "FGN-100-D3", type: "LEO", tle_available: true },
+        { name: "LUNA-2", display_name: "LUNA-2", type: "LEO", tle_available: true }
+    ];
+
     const apiBaseUrl = (() => {
         const params = new URLSearchParams(window.location.search);
         const apiParam = params.get("api");
+        const defaultApiBaseUrl = window.location.hostname.endsWith("github.io")
+            ? "http://127.0.0.1:8000"
+            : "";
 
         if (apiParam) {
             const normalized = apiParam.replace(/\/+$/, "");
@@ -1567,11 +1582,19 @@
             return normalized;
         }
 
-        return (window.localStorage.getItem("ferganiApiBaseUrl") || "").replace(/\/+$/, "");
+        return (window.localStorage.getItem("ferganiApiBaseUrl") || defaultApiBaseUrl).replace(/\/+$/, "");
     })();
 
     function apiUrl(path) {
         return apiBaseUrl + path;
+    }
+
+    function getApiHelpText() {
+        if (window.location.hostname.endsWith("github.io")) {
+            return "GitHub sayfası canlı veri için bu bilgisayardaki API'ye veya ?api= ile verilen tünel adresine bağlanmalı.";
+        }
+
+        return "Canlı API bağlantısı kurulamadı.";
     }
 
     const satelliteInfo = {
@@ -1714,25 +1737,42 @@
         document.body.classList.toggle("dark");
     }
 
-    async function loadSatellites() {
-        const response = await fetch(apiUrl("/satellites"));
-        const data = await response.json();
-
+    function fillSatelliteSelect(satellites, offlineMode = false) {
         const select = document.getElementById("satelliteSelect");
         select.innerHTML = "";
 
-        data.satellites.forEach(sat => {
+        satellites.forEach(sat => {
             const option = document.createElement("option");
             option.value = sat.name;
 
             let label = sat.display_name + " (" + sat.type + ")";
             if (!sat.tle_available) label += " - TLE YOK";
+            if (offlineMode) label += " - API BEKLENİYOR";
 
             option.textContent = label;
             select.appendChild(option);
         });
 
         updateSatelliteInfoCard();
+    }
+
+    async function loadSatellites() {
+        try {
+            const response = await fetch(apiUrl("/satellites"));
+
+            if (!response.ok) {
+                throw new Error("Satellites endpoint unavailable");
+            }
+
+            const data = await response.json();
+            fillSatelliteSelect(data.satellites);
+            return true;
+        } catch (error) {
+            fillSatelliteSelect(fallbackSatellites, true);
+            setText("mapStatus", "● Canlı API bağlantısı yok");
+            clearTrackFields(getApiHelpText());
+            return false;
+        }
     }
 
     function getQueryParams() {
@@ -1900,8 +1940,21 @@
     async function loadTrack() {
         updateSatelliteInfoCard();
 
-        const response = await fetch(apiUrl("/track?" + getQueryParams().toString()));
-        const result = await response.json();
+        let result;
+
+        try {
+            const response = await fetch(apiUrl("/track?" + getQueryParams().toString()));
+
+            if (!response.ok) {
+                throw new Error("Track endpoint unavailable");
+            }
+
+            result = await response.json();
+        } catch (error) {
+            clearTrackFields(getApiHelpText());
+            setText("mapStatus", "● Canlı API bağlantısı yok");
+            return;
+        }
 
         if (!result.ok) {
             clearTrackFields(result.error);
@@ -1948,8 +2001,29 @@
     async function loadBestPass() {
         updateSatelliteInfoCard();
 
-        const response = await fetch(apiUrl("/best-pass?" + getQueryParams().toString()));
-        const data = await response.json();
+        let data;
+
+        try {
+            const response = await fetch(apiUrl("/best-pass?" + getQueryParams().toString()));
+
+            if (!response.ok) {
+                throw new Error("Best pass endpoint unavailable");
+            }
+
+            data = await response.json();
+        } catch (error) {
+            setText("passBigText", "Canlı API bağlantısı yok.");
+            setText("passSmallText", getApiHelpText());
+            setText("todaySummary", "Canlı API bağlantısı bekleniyor.");
+            setText("passStart", "-");
+            setText("passEnd", "-");
+            setText("passMaxTime", "-");
+            setText("passMaxElevation", "-");
+            setText("passStartAzimuth", "-");
+            setText("passEndAzimuth", "-");
+            setText("passCount", "-");
+            return;
+        }
 
         if (!data.visible_pass_found) {
             setText("passBigText", "Bugün uygun geçiş bulunamadı.");

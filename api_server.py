@@ -22,7 +22,7 @@ cors_origins = [
     origin.strip()
     for origin in os.getenv(
         "FERGANI_CORS_ORIGINS",
-        "http://127.0.0.1:8000,http://localhost:8000,https://ceyhu.github.io"
+        "http://127.0.0.1:8000,http://localhost:8000,https://ceyhu.github.io,https://klovoksilo-svg.github.io"
     ).split(",")
     if origin.strip()
 ]
